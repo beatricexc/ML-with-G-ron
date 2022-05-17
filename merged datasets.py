@@ -1,4 +1,18 @@
 
+
+
+# Download the data
+import urllib.request
+DOWNLOAD_ROOT = "https://raw.githubusercontent.com/ageron/handson-ml2/master/"
+os.makedirs(datapath, exist_ok=True)
+for filename in ("oecd_bli_2015.csv", "gdp_per_capita.csv"):
+    print("Downloading", filename)
+    url = DOWNLOAD_ROOT + "datasets/lifesat/" + filename
+    urllib.request.urlretrieve(url, datapath + filename)
+
+
+
+
 def prepare_country_stats(oecd_bli, gdp_per_capita):
     oecd_bli = oecd_bli[oecd_bli["INEQUALITY"]=="TOT"]
     oecd_bli = oecd_bli.pivot(index="Country", columns="Indicator", values="Value")
